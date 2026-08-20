@@ -1,0 +1,162 @@
+[
+  {
+    "id": "pii-01",
+    "text": "My email is jane.doe@example.com, please send the policy there.",
+    "expected_types": [
+      "email"
+    ]
+  },
+  {
+    "id": "pii-02",
+    "text": "You can reach me at +1 (415) 555-0132.",
+    "expected_types": [
+      "phone"
+    ]
+  },
+  {
+    "id": "pii-03",
+    "text": "My SSN is 123-45-6789 for the underwriting check.",
+    "expected_types": [
+      "ssn"
+    ]
+  },
+  {
+    "id": "pii-04",
+    "text": "Charge it to card 4242 4242 4242 4242.",
+    "expected_types": [
+      "credit_card"
+    ]
+  },
+  {
+    "id": "pii-05",
+    "text": "Contact bob_smith99@mail.co.uk or 0912-345-678.",
+    "expected_types": [
+      "email",
+      "phone"
+    ]
+  },
+  {
+    "id": "pii-06",
+    "text": "Card 5500-0000-0000-0004 expires next year.",
+    "expected_types": [
+      "credit_card"
+    ]
+  },
+  {
+    "id": "pii-07",
+    "text": "SSN 234-56-7890 and email a.b@c.io on file.",
+    "expected_types": [
+      "ssn",
+      "email"
+    ]
+  },
+  {
+    "id": "pii-08",
+    "text": "Call 415 555 0132 after 6pm.",
+    "expected_types": [
+      "phone"
+    ]
+  },
+  {
+    "id": "pii-09",
+    "text": "Please email claims to first.last+tag@insurer.example.",
+    "expected_types": [
+      "email"
+    ]
+  },
+  {
+    "id": "pii-10",
+    "text": "My mobile is +44 20 7946 0958 while I'm in London.",
+    "expected_types": [
+      "phone"
+    ]
+  },
+  {
+    "id": "pii-11",
+    "text": "What does travel insurance cover?",
+    "expected_types": []
+  },
+  {
+    "id": "pii-12",
+    "text": "My policy covers up to 500000 dollars in liability.",
+    "expected_types": []
+  },
+  {
+    "id": "pii-13",
+    "text": "The claim was filed on 2024-01-15, when will it settle?",
+    "expected_types": []
+  },
+  {
+    "id": "pii-14",
+    "text": "Call 1-800-AEGIS for the claims hotline, right?",
+    "expected_types": []
+  },
+  {
+    "id": "pii-15",
+    "text": "Coverage limit is 1,000,000 and the premium is 45 per month.",
+    "expected_types": []
+  },
+  {
+    "id": "pii-16",
+    "text": "Is a $500 deductible normal for auto insurance?",
+    "expected_types": []
+  },
+  {
+    "id": "pii-17",
+    "text": "I need a plan under $50 per month for a family of four.",
+    "expected_types": []
+  },
+  {
+    "id": "pii-18",
+    "text": "My policy number is AEG-2024-88213.",
+    "expected_types": []
+  },
+  {
+    "id": "pii-19",
+    "text": "How do I add my spouse during open enrollment in November?",
+    "expected_types": []
+  },
+  {
+    "id": "pii-20",
+    "text": "Does umbrella insurance sit on top of my 300000 auto liability?",
+    "expected_types": []
+  },
+  {
+    "id": "pii-21",
+    "text": "my email is bob dot smith at gmail dot com",
+    "expected_types": [
+      "email"
+    ]
+  },
+  {
+    "id": "pii-22",
+    "text": "SSN: 234 56 7890 for the application.",
+    "expected_types": [
+      "ssn"
+    ]
+  },
+  {
+    "id": "pii-23",
+    "text": "Card number 4242424242424242, expiry 05/28.",
+    "expected_types": [
+      "credit_card"
+    ]
+  },
+  {
+    "id": "pii-24",
+    "text": "You can call me on +886 912 345 678 any time.",
+    "expected_types": [
+      "phone"
+    ]
+  },
+  {
+    "id": "pii-25",
+    "text": "I live at 123 Main Street, Springfield.",
+    "expected_types": []
+  },
+  {
+    "id": "pii-26",
+    "text": "My date of birth is 05/12/1988, does that affect my premium?",
+    "expected_types": []
+  }
+]

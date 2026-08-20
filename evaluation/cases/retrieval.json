@@ -1,0 +1,14 @@
+[
+  {"id": "rag-01", "query": "what is covered when my trip gets cancelled abroad", "expected_faq_ids": ["faq-001"]},
+  {"id": "rag-02", "query": "how do I submit a claim and how long does it take", "expected_faq_ids": ["faq-002"]},
+  {"id": "rag-03", "query": "term vs whole life insurance difference", "expected_faq_ids": ["faq-003"]},
+  {"id": "rag-04", "query": "can my husband join my health plan", "expected_faq_ids": ["faq-004"]},
+  {"id": "rag-05", "query": "why is my car insurance so expensive", "expected_faq_ids": ["faq-005"]},
+  {"id": "rag-06", "query": "what does deductible mean", "expected_faq_ids": ["faq-006"]},
+  {"id": "rag-07", "query": "is flooding included in my home policy", "expected_faq_ids": ["faq-007"]},
+  {"id": "rag-08", "query": "I want to end my policy early", "expected_faq_ids": ["faq-008"]},
+  {"id": "rag-09", "query": "what protection do tenants get for their belongings", "expected_faq_ids": ["faq-009"]},
+  {"id": "rag-10", "query": "extra liability coverage above my other policies", "expected_faq_ids": ["faq-010"]},
+  {"id": "rag-11", "query": "baggage lost on an international flight", "expected_faq_ids": ["faq-001"]},
+  {"id": "rag-12", "query": "documents needed to support a claim", "expected_faq_ids": ["faq-002"]}
+]

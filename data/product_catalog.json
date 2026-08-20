@@ -1,0 +1,90 @@
+[
+  {
+    "id": "prod-001",
+    "name": "SafeTravel Plus",
+    "type": "travel",
+    "description": "Comprehensive travel insurance for individuals and families. Covers trip cancellation, medical emergencies, baggage loss, and travel delays.",
+    "coverage_limit": 500000,
+    "monthly_premium": 45,
+    "features": ["trip cancellation", "medical emergency", "baggage protection", "24/7 assistance", "adventure sports"],
+    "suitable_for": ["frequent travelers", "families", "international trips"],
+    "rating": 4.7
+  },
+  {
+    "id": "prod-002",
+    "name": "FamilyShield Term 20",
+    "type": "life-term",
+    "description": "20-year term life insurance designed for young families. Affordable premiums with substantial death benefit.",
+    "coverage_limit": 1000000,
+    "monthly_premium": 35,
+    "features": ["20-year term", "level premiums", "convertible to whole life", "accelerated death benefit"],
+    "suitable_for": ["young families", "mortgage protection", "income replacement"],
+    "rating": 4.5
+  },
+  {
+    "id": "prod-003",
+    "name": "AutoGuard Premium",
+    "type": "auto",
+    "description": "Full-coverage auto insurance with collision, comprehensive, and liability protection. Includes roadside assistance.",
+    "coverage_limit": 300000,
+    "monthly_premium": 120,
+    "features": ["collision", "comprehensive", "liability", "roadside assistance", "rental car coverage", "gap insurance"],
+    "suitable_for": ["new car owners", "commuters", "families with teen drivers"],
+    "rating": 4.3
+  },
+  {
+    "id": "prod-004",
+    "name": "HomeSecure Complete",
+    "type": "home",
+    "description": "All-risk homeowners insurance covering dwelling, personal property, liability, and additional living expenses.",
+    "coverage_limit": 750000,
+    "monthly_premium": 150,
+    "features": ["dwelling coverage", "personal property", "liability", "additional living expenses", "identity theft protection"],
+    "suitable_for": ["homeowners", "high-value homes", "families"],
+    "rating": 4.6
+  },
+  {
+    "id": "prod-005",
+    "name": "HealthFirst Gold",
+    "type": "health",
+    "description": "Comprehensive health insurance with low deductibles, wide provider network, and prescription drug coverage.",
+    "coverage_limit": 2000000,
+    "monthly_premium": 450,
+    "features": ["low deductible", "wide network", "prescription coverage", "mental health", "preventive care", "telehealth"],
+    "suitable_for": ["families", "individuals with chronic conditions", "comprehensive coverage seekers"],
+    "rating": 4.4
+  },
+  {
+    "id": "prod-006",
+    "name": "RenterSafe Basic",
+    "type": "renters",
+    "description": "Affordable renters insurance protecting personal belongings and providing liability coverage.",
+    "coverage_limit": 50000,
+    "monthly_premium": 18,
+    "features": ["personal property", "liability", "additional living expenses", "theft protection"],
+    "suitable_for": ["apartment renters", "students", "young professionals"],
+    "rating": 4.2
+  },
+  {
+    "id": "prod-007",
+    "name": "UmbrellaMax",
+    "type": "umbrella",
+    "description": "Extra liability protection beyond your existing home and auto policies. Covers lawsuits, legal defense, and more.",
+    "coverage_limit": 2000000,
+    "monthly_premium": 30,
+    "features": ["excess liability", "legal defense", "worldwide coverage", "personal injury"],
+    "suitable_for": ["high-net-worth individuals", "business owners", "property investors"],
+    "rating": 4.8
+  },
+  {
+    "id": "prod-008",
+    "name": "SafeTravel Basic",
+    "type": "travel",
+    "description": "Essential travel insurance for budget-conscious travelers. Covers medical emergencies and trip cancellation.",
+    "coverage_limit": 100000,
+    "monthly_premium": 15,
+    "features": ["medical emergency", "trip cancellation", "travel delay"],
+    "suitable_for": ["budget travelers", "domestic trips", "short trips"],
+    "rating": 4.1
+  }
+]

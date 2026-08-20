@@ -1,0 +1,72 @@
+[
+  {
+    "id": "faq-001",
+    "question": "What does travel insurance cover?",
+    "answer": "Travel insurance typically covers trip cancellation or interruption, medical emergencies abroad, emergency evacuation, lost or delayed baggage, travel delays, and accidental death. Coverage varies by plan — basic plans cover cancellations and medical emergencies, while comprehensive plans include cancel-for-any-reason (CFAR) benefits, rental car coverage, and adventure sports.",
+    "category": "travel",
+    "tags": ["travel", "coverage", "basics"]
+  },
+  {
+    "id": "faq-002",
+    "question": "How do I file a claim?",
+    "answer": "To file a claim: 1) Log into your account or call our claims hotline at 1-800-AEGIS. 2) Provide your policy number and incident details. 3) Upload supporting documents (receipts, police reports, medical records). 4) Our team reviews within 5-7 business days. 5) Approved claims are paid within 10 business days. You can track your claim status online.",
+    "category": "claims",
+    "tags": ["claims", "process", "how-to"]
+  },
+  {
+    "id": "faq-003",
+    "question": "What is the difference between term and whole life insurance?",
+    "answer": "Term life insurance provides coverage for a specific period (10, 20, or 30 years) and pays a death benefit if you die during the term. It's more affordable but has no cash value. Whole life insurance covers you for your entire life, builds cash value over time, and has fixed premiums. Term is better for temporary needs (e.g., mortgage protection), while whole life is suited for lifelong coverage and wealth transfer.",
+    "category": "life-insurance",
+    "tags": ["life", "term", "whole", "comparison"]
+  },
+  {
+    "id": "faq-004",
+    "question": "Can I add my spouse to my health insurance plan?",
+    "answer": "Yes, you can add your spouse during open enrollment (typically November-December) or within 30 days of a qualifying life event such as marriage. Adding a spouse increases your premium but provides them with the same coverage. You'll need their Social Security number, date of birth, and marriage certificate.",
+    "category": "health",
+    "tags": ["health", "spouse", "enrollment"]
+  },
+  {
+    "id": "faq-005",
+    "question": "What factors affect my car insurance premium?",
+    "answer": "Key factors include: driving record (accidents, violations), age and gender, vehicle type and age, annual mileage, credit score, location (urban vs. rural), coverage level and deductible, and claims history. Safe drivers with clean records, low mileage, and higher deductibles typically pay lower premiums. Bundling auto with home insurance can save 10-25%.",
+    "category": "auto",
+    "tags": ["auto", "premium", "factors", "pricing"]
+  },
+  {
+    "id": "faq-006",
+    "question": "What is a deductible?",
+    "answer": "A deductible is the amount you pay out of pocket before your insurance coverage kicks in. For example, with a $500 deductible and a $2,000 claim, you pay $500 and insurance covers $1,500. Higher deductibles mean lower premiums but more out-of-pocket costs when you file a claim. Choose a deductible you can comfortably afford in an emergency.",
+    "category": "general",
+    "tags": ["deductible", "basics", "terminology"]
+  },
+  {
+    "id": "faq-007",
+    "question": "Does home insurance cover flood damage?",
+    "answer": "Standard home insurance does NOT cover flood damage. You need a separate flood insurance policy, typically through the National Flood Insurance Program (NFIP) or private insurers. If you live in a high-risk flood zone, your mortgage lender may require flood insurance. We offer flood insurance add-ons starting at $30/month.",
+    "category": "home",
+    "tags": ["home", "flood", "coverage", "exclusions"]
+  },
+  {
+    "id": "faq-008",
+    "question": "How do I cancel my policy?",
+    "answer": "To cancel your policy: 1) Contact us at least 30 days before the desired cancellation date. 2) You can cancel online, by phone, or by written request. 3) Any unused premium will be refunded pro-rata. 4) Cancellation takes effect at the end of your billing period unless you request immediate cancellation. Note: Some policies may have early cancellation fees.",
+    "category": "general",
+    "tags": ["cancel", "policy", "process"]
+  },
+  {
+    "id": "faq-009",
+    "question": "What does renters insurance cover?",
+    "answer": "Renters insurance covers: personal property (furniture, electronics, clothing) against theft, fire, and certain disasters; liability if someone is injured in your rental; additional living expenses if your rental becomes uninhabitable; and medical payments for guest injuries. It does NOT cover the building itself (that's the landlord's responsibility), floods, or earthquakes. Average cost is $15-30/month.",
+    "category": "renters",
+    "tags": ["renters", "coverage", "apartment"]
+  },
+  {
+    "id": "faq-010",
+    "question": "What is umbrella insurance?",
+    "answer": "Umbrella insurance provides extra liability coverage beyond the limits of your home, auto, or other policies. It kicks in when your underlying policy limits are exhausted. For example, if you're sued for $1M but your auto policy only covers $500K, a $1M umbrella policy covers the remaining $500K. It's recommended for high-net-worth individuals or those at higher liability risk. Typically costs $150-400/year for $1M coverage.",
+    "category": "umbrella",
+    "tags": ["umbrella", "liability", "extra-coverage"]
+  }
+]
