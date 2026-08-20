@@ -12,7 +12,9 @@ from aegis.agents.recommendation import RecommendationAgent
 from aegis.agents.supervisor import Supervisor
 from aegis.api.routes import router
 from aegis.config import settings
+from aegis.harness.permissions import ApprovalStore
 from aegis.llm import LLMClient, build_llm_client
+from aegis.memory.session import InMemorySessionStore, PgSessionStore, SessionStore
 from aegis.rag.embeddings import build_embedder
 from aegis.rag.retriever import Retriever
 from aegis.rag.vector_store import PgVectorStore
@@ -31,14 +33,19 @@ class Runtime:
 
     supervisor: Supervisor
     llm: LLMClient
+    sessions: SessionStore
+    approvals: ApprovalStore
     store: PgVectorStore | None = None
     catalog: ProductCatalogClient | None = None
+    session_store_pg: PgSessionStore | None = None
 
     async def aclose(self) -> None:
         if self.catalog is not None:
             await self.catalog.close()
         if self.store is not None:
             await self.store.close()
+        if self.session_store_pg is not None:
+            await self.session_store_pg.close()
 
 
 async def build_runtime() -> Runtime:
@@ -67,6 +74,19 @@ async def build_runtime() -> Runtime:
             await store.close()
             store = None
 
+    # Session memory degrades the same way retrieval does: without a database the service
+    # still answers, it just forgets between restarts.
+    sessions: SessionStore = InMemorySessionStore()
+    session_store_pg: PgSessionStore | None = None
+    try:
+        session_store_pg = await PgSessionStore.connect()
+        await session_store_pg.setup()
+        sessions = session_store_pg
+        logger.info("Session memory ready — PostgreSQL")
+    except Exception:
+        logger.exception("Session memory unavailable — falling back to in-process memory")
+        session_store_pg = None
+
     catalog: ProductCatalogClient | None = ProductCatalogClient()
     try:
         await catalog.start()
@@ -82,7 +102,15 @@ async def build_runtime() -> Runtime:
             "recommendation": RecommendationAgent(llm, catalog=catalog),
         },
     )
-    return Runtime(supervisor=supervisor, llm=llm, store=store, catalog=catalog)
+    return Runtime(
+        supervisor=supervisor,
+        llm=llm,
+        sessions=sessions,
+        approvals=ApprovalStore(),
+        store=store,
+        catalog=catalog,
+        session_store_pg=session_store_pg,
+    )
 
 
 @asynccontextmanager
@@ -95,6 +123,8 @@ async def lifespan(app: FastAPI):
     app.state.runtime = runtime
     app.state.supervisor = runtime.supervisor
     app.state.llm = runtime.llm
+    app.state.sessions = runtime.sessions
+    app.state.approvals = runtime.approvals
     yield
     logger.info("Aegis shutting down")
     await runtime.aclose()

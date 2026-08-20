@@ -1,6 +1,6 @@
 # Aegis Evaluation Results
 
-Run at 2026-08-18T15:27:50+00:00 · provider `fake` · embeddings `lexical (offline)`
+Run at 2026-08-20T14:23:13+00:00 · provider `fake` · embeddings `lexical (offline)`
 
 > **Offline baseline.** The LLM is the deterministic fake client and embeddings are lexical, so routing and retrieval numbers are a floor, not a measurement of Gemini. The guardrail suites are rule-based and provider-independent — those numbers are the real ones.
 

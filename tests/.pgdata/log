@@ -176,3 +176,212 @@
 2026-08-19 01:13:28.890 EEST [7823] LOG:  checkpoint starting: shutdown immediate
 2026-08-19 01:13:28.895 EEST [7823] LOG:  checkpoint complete: wrote 32 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.005 s; sync files=51, longest=0.001 s, average=0.001 s; distance=545 kB, estimate=545 kB; lsn=0/1B322C8, redo lsn=0/1B322C8
 2026-08-19 01:13:28.896 EEST [7822] LOG:  database system is shut down
+2026-08-20 17:03:02.535 EEST [4956] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:03:02.535 EEST [4956] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:03:02.556 EEST [4959] LOG:  database system was shut down at 2026-08-19 01:13:28 EEST
+2026-08-20 17:03:02.606 EEST [4956] LOG:  database system is ready to accept connections
+2026-08-20 17:03:21.503 EEST [4956] LOG:  received fast shutdown request
+2026-08-20 17:03:21.504 EEST [4956] LOG:  aborting any active transactions
+2026-08-20 17:03:21.505 EEST [4956] LOG:  background worker "logical replication launcher" (PID 4962) exited with exit code 1
+2026-08-20 17:03:21.505 EEST [4957] LOG:  shutting down
+2026-08-20 17:03:21.505 EEST [4957] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:03:21.511 EEST [4957] LOG:  checkpoint complete: wrote 34 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.003 s, total=0.007 s; sync files=51, longest=0.001 s, average=0.001 s; distance=546 kB, estimate=546 kB; lsn=0/1BBAC80, redo lsn=0/1BBAC80
+2026-08-20 17:03:21.515 EEST [4956] LOG:  database system is shut down
+2026-08-20 17:12:36.726 EEST [6173] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:12:36.728 EEST [6173] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:12:36.733 EEST [6176] LOG:  database system was shut down at 2026-08-20 17:03:21 EEST
+2026-08-20 17:12:36.736 EEST [6173] LOG:  database system is ready to accept connections
+2026-08-20 17:12:49.624 EEST [6173] LOG:  received fast shutdown request
+2026-08-20 17:12:49.624 EEST [6173] LOG:  aborting any active transactions
+2026-08-20 17:12:49.625 EEST [6173] LOG:  background worker "logical replication launcher" (PID 6179) exited with exit code 1
+2026-08-20 17:12:49.625 EEST [6174] LOG:  shutting down
+2026-08-20 17:12:49.626 EEST [6174] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:12:49.638 EEST [6174] LOG:  checkpoint complete: wrote 77 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.005 s, total=0.013 s; sync files=87, longest=0.001 s, average=0.001 s; distance=702 kB, estimate=702 kB; lsn=0/1C6A758, redo lsn=0/1C6A758
+2026-08-20 17:12:49.640 EEST [6173] LOG:  database system is shut down
+2026-08-20 17:14:20.856 EEST [6536] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:14:20.857 EEST [6536] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:14:20.866 EEST [6539] LOG:  database system was shut down at 2026-08-20 17:12:49 EEST
+2026-08-20 17:14:20.889 EEST [6536] LOG:  database system is ready to accept connections
+2026-08-20 17:14:33.707 EEST [6536] LOG:  received fast shutdown request
+2026-08-20 17:14:33.707 EEST [6536] LOG:  aborting any active transactions
+2026-08-20 17:14:33.708 EEST [6536] LOG:  background worker "logical replication launcher" (PID 6542) exited with exit code 1
+2026-08-20 17:14:33.708 EEST [6537] LOG:  shutting down
+2026-08-20 17:14:33.708 EEST [6537] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:14:33.717 EEST [6537] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.005 s, total=0.009 s; sync files=57, longest=0.002 s, average=0.001 s; distance=539 kB, estimate=539 kB; lsn=0/1CF1580, redo lsn=0/1CF1580
+2026-08-20 17:14:33.718 EEST [6536] LOG:  database system is shut down
+2026-08-20 17:14:50.560 EEST [6766] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:14:50.563 EEST [6766] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:14:50.828 EEST [6769] LOG:  database system was shut down at 2026-08-20 17:14:33 EEST
+2026-08-20 17:14:50.845 EEST [6766] LOG:  database system is ready to accept connections
+2026-08-20 17:15:04.214 EEST [6766] LOG:  received fast shutdown request
+2026-08-20 17:15:04.215 EEST [6766] LOG:  aborting any active transactions
+2026-08-20 17:15:04.216 EEST [6766] LOG:  background worker "logical replication launcher" (PID 6772) exited with exit code 1
+2026-08-20 17:15:04.216 EEST [6767] LOG:  shutting down
+2026-08-20 17:15:04.217 EEST [6767] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:15:04.224 EEST [6767] LOG:  checkpoint complete: wrote 38 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.003 s, total=0.008 s; sync files=56, longest=0.001 s, average=0.001 s; distance=549 kB, estimate=549 kB; lsn=0/1D7A9C8, redo lsn=0/1D7A9C8
+2026-08-20 17:15:04.225 EEST [6766] LOG:  database system is shut down
+2026-08-20 17:18:46.542 EEST [7289] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:18:46.543 EEST [7289] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:18:46.547 EEST [7292] LOG:  database system was shut down at 2026-08-20 17:15:04 EEST
+2026-08-20 17:18:46.553 EEST [7289] LOG:  database system is ready to accept connections
+2026-08-20 17:18:46.773 EEST [7289] LOG:  received fast shutdown request
+2026-08-20 17:18:46.773 EEST [7289] LOG:  aborting any active transactions
+2026-08-20 17:18:46.774 EEST [7289] LOG:  background worker "logical replication launcher" (PID 7295) exited with exit code 1
+2026-08-20 17:18:46.774 EEST [7290] LOG:  shutting down
+2026-08-20 17:18:46.774 EEST [7290] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:18:46.776 EEST [7290] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=8, longest=0.001 s, average=0.001 s; distance=11 kB, estimate=11 kB; lsn=0/1D7D828, redo lsn=0/1D7D828
+2026-08-20 17:18:46.778 EEST [7289] LOG:  database system is shut down
+2026-08-20 17:19:17.470 EEST [7364] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:19:17.470 EEST [7364] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:19:17.474 EEST [7367] LOG:  database system was shut down at 2026-08-20 17:18:46 EEST
+2026-08-20 17:19:17.478 EEST [7364] LOG:  database system is ready to accept connections
+2026-08-20 17:19:31.417 EEST [7364] LOG:  received fast shutdown request
+2026-08-20 17:19:31.417 EEST [7364] LOG:  aborting any active transactions
+2026-08-20 17:19:31.419 EEST [7364] LOG:  background worker "logical replication launcher" (PID 7370) exited with exit code 1
+2026-08-20 17:19:31.419 EEST [7365] LOG:  shutting down
+2026-08-20 17:19:31.419 EEST [7365] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:19:31.429 EEST [7365] LOG:  checkpoint complete: wrote 39 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.004 s, total=0.011 s; sync files=93, longest=0.001 s, average=0.001 s; distance=1169 kB, estimate=1169 kB; lsn=0/1EA1E08, redo lsn=0/1EA1E08
+2026-08-20 17:19:31.431 EEST [7364] LOG:  database system is shut down
+2026-08-20 17:20:03.799 EEST [7887] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:20:03.799 EEST [7887] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:20:03.804 EEST [7890] LOG:  database system was shut down at 2026-08-20 17:19:31 EEST
+2026-08-20 17:20:03.807 EEST [7887] LOG:  database system is ready to accept connections
+2026-08-20 17:20:22.067 EEST [7887] LOG:  received fast shutdown request
+2026-08-20 17:20:22.068 EEST [7887] LOG:  aborting any active transactions
+2026-08-20 17:20:22.069 EEST [7887] LOG:  background worker "logical replication launcher" (PID 7893) exited with exit code 1
+2026-08-20 17:20:22.069 EEST [7888] LOG:  shutting down
+2026-08-20 17:20:22.069 EEST [7888] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:20:22.079 EEST [7888] LOG:  checkpoint complete: wrote 41 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.011 s; sync files=94, longest=0.001 s, average=0.001 s; distance=1179 kB, estimate=1179 kB; lsn=0/1FC8B30, redo lsn=0/1FC8B30
+2026-08-20 17:20:22.081 EEST [7887] LOG:  database system is shut down
+2026-08-20 17:20:59.509 EEST [8422] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:20:59.515 EEST [8422] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:20:59.540 EEST [8425] LOG:  database system was shut down at 2026-08-20 17:20:22 EEST
+2026-08-20 17:20:59.569 EEST [8422] LOG:  database system is ready to accept connections
+2026-08-20 17:21:28.170 EEST [8422] LOG:  received fast shutdown request
+2026-08-20 17:21:28.172 EEST [8422] LOG:  aborting any active transactions
+2026-08-20 17:21:28.176 EEST [8422] LOG:  background worker "logical replication launcher" (PID 8428) exited with exit code 1
+2026-08-20 17:21:28.178 EEST [8423] LOG:  shutting down
+2026-08-20 17:21:28.178 EEST [8423] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:21:28.208 EEST [8423] LOG:  checkpoint complete: wrote 42 buffers (0.3%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.014 s, sync=0.005 s, total=0.031 s; sync files=93, longest=0.001 s, average=0.001 s; distance=1190 kB, estimate=1190 kB; lsn=0/20F26A0, redo lsn=0/20F26A0
+2026-08-20 17:21:28.210 EEST [8422] LOG:  database system is shut down
+2026-08-20 17:21:40.325 EEST [8944] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:21:40.326 EEST [8944] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:21:40.334 EEST [8947] LOG:  database system was shut down at 2026-08-20 17:21:28 EEST
+2026-08-20 17:21:40.339 EEST [8944] LOG:  database system is ready to accept connections
+2026-08-20 17:22:07.823 EEST [8944] LOG:  received fast shutdown request
+2026-08-20 17:22:07.824 EEST [8944] LOG:  aborting any active transactions
+2026-08-20 17:22:07.825 EEST [8944] LOG:  background worker "logical replication launcher" (PID 8950) exited with exit code 1
+2026-08-20 17:22:07.825 EEST [8945] LOG:  shutting down
+2026-08-20 17:22:07.825 EEST [8945] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:22:07.837 EEST [8945] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.006 s, total=0.013 s; sync files=111, longest=0.001 s, average=0.001 s; distance=1344 kB, estimate=1344 kB; lsn=0/2242948, redo lsn=0/2242948
+2026-08-20 17:22:07.839 EEST [8944] LOG:  database system is shut down
+2026-08-20 17:22:24.283 EEST [9509] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:22:24.284 EEST [9509] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:22:24.301 EEST [9512] LOG:  database system was shut down at 2026-08-20 17:22:07 EEST
+2026-08-20 17:22:24.344 EEST [9509] LOG:  database system is ready to accept connections
+2026-08-20 17:22:48.465 EEST [9509] LOG:  received fast shutdown request
+2026-08-20 17:22:48.465 EEST [9509] LOG:  aborting any active transactions
+2026-08-20 17:22:48.466 EEST [9509] LOG:  background worker "logical replication launcher" (PID 9515) exited with exit code 1
+2026-08-20 17:22:48.466 EEST [9510] LOG:  shutting down
+2026-08-20 17:22:48.466 EEST [9510] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:22:48.478 EEST [9510] LOG:  checkpoint complete: wrote 44 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.005 s, total=0.012 s; sync files=113, longest=0.001 s, average=0.001 s; distance=1365 kB, estimate=1365 kB; lsn=0/2397EB8, redo lsn=0/2397EB8
+2026-08-20 17:22:48.480 EEST [9509] LOG:  database system is shut down
+2026-08-20 17:23:03.848 EEST [10062] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:23:03.849 EEST [10062] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:23:03.855 EEST [10065] LOG:  database system was shut down at 2026-08-20 17:22:48 EEST
+2026-08-20 17:23:03.859 EEST [10062] LOG:  database system is ready to accept connections
+2026-08-20 17:23:03.987 EEST [10062] LOG:  received fast shutdown request
+2026-08-20 17:23:03.987 EEST [10062] LOG:  aborting any active transactions
+2026-08-20 17:23:03.988 EEST [10062] LOG:  background worker "logical replication launcher" (PID 10068) exited with exit code 1
+2026-08-20 17:23:03.988 EEST [10063] LOG:  shutting down
+2026-08-20 17:23:03.988 EEST [10063] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:23:03.990 EEST [10063] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/2397F30, redo lsn=0/2397F30
+2026-08-20 17:23:03.992 EEST [10062] LOG:  database system is shut down
+2026-08-20 17:23:13.396 EEST [10087] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:23:13.396 EEST [10087] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:23:13.400 EEST [10090] LOG:  database system was shut down at 2026-08-20 17:23:03 EEST
+2026-08-20 17:23:13.404 EEST [10087] LOG:  database system is ready to accept connections
+2026-08-20 17:23:13.841 EEST [10087] LOG:  received fast shutdown request
+2026-08-20 17:23:13.842 EEST [10087] LOG:  aborting any active transactions
+2026-08-20 17:23:13.842 EEST [10087] LOG:  background worker "logical replication launcher" (PID 10093) exited with exit code 1
+2026-08-20 17:23:13.842 EEST [10088] LOG:  shutting down
+2026-08-20 17:23:13.843 EEST [10088] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:23:13.847 EEST [10088] LOG:  checkpoint complete: wrote 33 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.005 s; sync files=11, longest=0.001 s, average=0.001 s; distance=163 kB, estimate=163 kB; lsn=0/23C0C40, redo lsn=0/23C0C40
+2026-08-20 17:23:13.849 EEST [10087] LOG:  database system is shut down
+2026-08-20 17:23:39.522 EEST [10168] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:23:39.523 EEST [10168] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:23:39.527 EEST [10171] LOG:  database system was shut down at 2026-08-20 17:23:13 EEST
+2026-08-20 17:23:39.531 EEST [10168] LOG:  database system is ready to accept connections
+2026-08-20 17:23:41.865 EEST [10168] LOG:  received fast shutdown request
+2026-08-20 17:23:41.865 EEST [10168] LOG:  aborting any active transactions
+2026-08-20 17:23:41.866 EEST [10168] LOG:  background worker "logical replication launcher" (PID 10174) exited with exit code 1
+2026-08-20 17:23:41.866 EEST [10169] LOG:  shutting down
+2026-08-20 17:23:41.867 EEST [10169] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:23:41.869 EEST [10169] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.003 s; sync files=8, longest=0.001 s, average=0.001 s; distance=15 kB, estimate=15 kB; lsn=0/23C4860, redo lsn=0/23C4860
+2026-08-20 17:23:41.872 EEST [10168] LOG:  database system is shut down
+2026-08-20 17:23:59.147 EEST [10231] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:23:59.148 EEST [10231] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:23:59.158 EEST [10234] LOG:  database system was shut down at 2026-08-20 17:23:41 EEST
+2026-08-20 17:23:59.164 EEST [10231] LOG:  database system is ready to accept connections
+2026-08-20 17:24:02.047 EEST [10231] LOG:  received fast shutdown request
+2026-08-20 17:24:02.048 EEST [10231] LOG:  aborting any active transactions
+2026-08-20 17:24:02.048 EEST [10231] LOG:  background worker "logical replication launcher" (PID 10237) exited with exit code 1
+2026-08-20 17:24:02.048 EEST [10232] LOG:  shutting down
+2026-08-20 17:24:02.049 EEST [10232] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:24:02.051 EEST [10232] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.003 s; sync files=8, longest=0.001 s, average=0.001 s; distance=17 kB, estimate=17 kB; lsn=0/23C8FE0, redo lsn=0/23C8FE0
+2026-08-20 17:24:02.053 EEST [10231] LOG:  database system is shut down
+2026-08-20 17:24:14.322 EEST [10277] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:24:14.322 EEST [10277] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:24:14.334 EEST [10280] LOG:  database system was shut down at 2026-08-20 17:24:02 EEST
+2026-08-20 17:24:14.338 EEST [10277] LOG:  database system is ready to accept connections
+2026-08-20 17:24:38.875 EEST [10277] LOG:  received fast shutdown request
+2026-08-20 17:24:38.876 EEST [10277] LOG:  aborting any active transactions
+2026-08-20 17:24:38.877 EEST [10277] LOG:  background worker "logical replication launcher" (PID 10283) exited with exit code 1
+2026-08-20 17:24:38.877 EEST [10278] LOG:  shutting down
+2026-08-20 17:24:38.877 EEST [10278] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:24:38.889 EEST [10278] LOG:  checkpoint complete: wrote 42 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.003 s, total=0.013 s; sync files=112, longest=0.001 s, average=0.001 s; distance=1355 kB, estimate=1355 kB; lsn=0/251BD30, redo lsn=0/251BD30
+2026-08-20 17:24:38.891 EEST [10277] LOG:  database system is shut down
+2026-08-20 17:27:52.715 EEST [11048] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:27:52.715 EEST [11048] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:27:52.723 EEST [11051] LOG:  database system was shut down at 2026-08-20 17:24:38 EEST
+2026-08-20 17:27:52.729 EEST [11048] LOG:  database system is ready to accept connections
+2026-08-20 17:28:21.578 EEST [11048] LOG:  received fast shutdown request
+2026-08-20 17:28:21.578 EEST [11048] LOG:  aborting any active transactions
+2026-08-20 17:28:21.580 EEST [11048] LOG:  background worker "logical replication launcher" (PID 11054) exited with exit code 1
+2026-08-20 17:28:21.580 EEST [11049] LOG:  shutting down
+2026-08-20 17:28:21.581 EEST [11049] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:28:21.594 EEST [11049] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.007 s, total=0.014 s; sync files=111, longest=0.002 s, average=0.001 s; distance=1344 kB, estimate=1344 kB; lsn=0/266C038, redo lsn=0/266C038
+2026-08-20 17:28:21.596 EEST [11048] LOG:  database system is shut down
+2026-08-20 17:29:46.889 EEST [11709] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:29:46.890 EEST [11709] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:29:46.909 EEST [11712] LOG:  database system was shut down at 2026-08-20 17:28:21 EEST
+2026-08-20 17:29:46.920 EEST [11709] LOG:  database system is ready to accept connections
+2026-08-20 17:30:17.920 EEST [11709] LOG:  received fast shutdown request
+2026-08-20 17:30:17.922 EEST [11709] LOG:  aborting any active transactions
+2026-08-20 17:30:17.924 EEST [11709] LOG:  background worker "logical replication launcher" (PID 11715) exited with exit code 1
+2026-08-20 17:30:17.924 EEST [11710] LOG:  shutting down
+2026-08-20 17:30:17.925 EEST [11710] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:30:17.979 EEST [11710] LOG:  checkpoint complete: wrote 85 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.023 s, sync=0.023 s, total=0.055 s; sync files=123, longest=0.005 s, average=0.001 s; distance=1608 kB, estimate=1608 kB; lsn=0/27FE248, redo lsn=0/27FE248
+2026-08-20 17:30:17.983 EEST [11709] LOG:  database system is shut down
+2026-08-20 17:31:02.043 EEST [12303] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:31:02.044 EEST [12303] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:31:02.052 EEST [12307] LOG:  database system was shut down at 2026-08-20 17:30:17 EEST
+2026-08-20 17:31:02.056 EEST [12303] LOG:  database system is ready to accept connections
+2026-08-20 17:31:28.253 EEST [12303] LOG:  received fast shutdown request
+2026-08-20 17:31:28.254 EEST [12303] LOG:  aborting any active transactions
+2026-08-20 17:31:28.260 EEST [12303] LOG:  background worker "logical replication launcher" (PID 12310) exited with exit code 1
+2026-08-20 17:31:28.268 EEST [12305] LOG:  shutting down
+2026-08-20 17:31:28.270 EEST [12305] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:31:28.494 EEST [12305] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.161 s, sync=0.027 s, total=0.209 s; sync files=111, longest=0.018 s, average=0.001 s; distance=1331 kB, estimate=1331 kB; lsn=0/294AFA8, redo lsn=0/294AFA8
+2026-08-20 17:31:28.507 EEST [12303] LOG:  database system is shut down
+2026-08-20 17:31:37.679 EEST [12864] LOG:  starting PostgreSQL 16.2 on aarch64-apple-darwin23.5.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2026-08-20 17:31:37.680 EEST [12864] LOG:  listening on Unix socket "/Users/louistung/Aegis/tests/.pgdata/.s.PGSQL.5432"
+2026-08-20 17:31:37.684 EEST [12867] LOG:  database system was shut down at 2026-08-20 17:31:28 EEST
+2026-08-20 17:31:37.687 EEST [12864] LOG:  database system is ready to accept connections
+2026-08-20 17:31:40.082 EEST [12864] LOG:  received fast shutdown request
+2026-08-20 17:31:40.082 EEST [12864] LOG:  aborting any active transactions
+2026-08-20 17:31:40.082 EEST [12864] LOG:  background worker "logical replication launcher" (PID 12870) exited with exit code 1
+2026-08-20 17:31:40.083 EEST [12865] LOG:  shutting down
+2026-08-20 17:31:40.083 EEST [12865] LOG:  checkpoint starting: shutdown immediate
+2026-08-20 17:31:40.085 EEST [12865] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=8, longest=0.001 s, average=0.001 s; distance=21 kB, estimate=21 kB; lsn=0/29506B0, redo lsn=0/29506B0
+2026-08-20 17:31:40.086 EEST [12864] LOG:  database system is shut down

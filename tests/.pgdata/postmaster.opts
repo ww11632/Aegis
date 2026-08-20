@@ -1,1 +1,1 @@
-/Users/louistung/aegis/.venv/lib/python3.11/site-packages/pgserver/pginstall/bin/postgres "-D" "/Users/louistung/aegis/tests/.pgdata" "-h" "" "-k" "/Users/louistung/aegis/tests/.pgdata"
+/Users/louistung/Aegis/.venv/lib/python3.11/site-packages/pgserver/pginstall/bin/postgres "-D" "/Users/louistung/Aegis/tests/.pgdata" "-h" "" "-k" "/Users/louistung/Aegis/tests/.pgdata"

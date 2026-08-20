@@ -69,7 +69,7 @@ class _NullAgent:
     def __init__(self, name: str):
         self.name = name
 
-    async def run(self, message: str, *, session_id: str = "default") -> AgentResult:
+    async def run(self, message: str, *, ctx=None) -> AgentResult:
         return AgentResult(reply="", trace=[])
 
 

@@ -124,6 +124,16 @@ class ProductCatalogClient:
         payload = await self.call("get_product_details", {"product_id": product_id})
         return payload if isinstance(payload, dict) else {}
 
+    async def request_advisor_callback(
+        self, product_id: str = "", reason: str = "", contact_hint: str = ""
+    ) -> dict:
+        """External side effect — only call this after the permission layer approved it."""
+        payload = await self.call(
+            "request_advisor_callback",
+            {"product_id": product_id, "reason": reason, "contact_hint": contact_hint},
+        )
+        return payload if isinstance(payload, dict) else {}
+
     def _require_session(self) -> ClientSession:
         if self._session is None:
             raise MCPToolError(f"MCP session is not running ({self._error!r})")

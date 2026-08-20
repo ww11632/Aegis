@@ -12,6 +12,7 @@ from typing import Protocol, TypeVar
 from pydantic import BaseModel, ValidationError
 
 from aegis.config import settings
+from aegis.harness.cost import estimate_tokens, record_usage
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +21,27 @@ T = TypeVar("T", bound=BaseModel)
 
 class LLMError(RuntimeError):
     """Raised when the LLM call fails or returns unusable output."""
+
+
+def _record_gemini_usage(model: str, resp, prompt: str, system: str) -> None:
+    """Book a Gemini call against the request's cost meter.
+
+    The SDK reports token counts on the response; when it does not, the call is still
+    recorded from a character estimate and flagged as such, so a missing field shows up
+    as an approximate number rather than as free.
+    """
+    meta = getattr(resp, "usage_metadata", None)
+    tokens_in = getattr(meta, "prompt_token_count", None)
+    tokens_out = getattr(meta, "candidates_token_count", None)
+    if tokens_in is None or tokens_out is None:
+        record_usage(
+            model,
+            estimate_tokens(system + prompt),
+            estimate_tokens(getattr(resp, "text", "") or ""),
+            estimated=True,
+        )
+        return
+    record_usage(model, int(tokens_in), int(tokens_out or 0))
 
 
 class LLMClient(Protocol):
@@ -63,6 +85,7 @@ class GeminiClient:
         except Exception as exc:  # SDK raises provider-specific errors
             raise LLMError(f"Gemini generate_content failed: {exc}") from exc
 
+        _record_gemini_usage(self._model, resp, prompt, system)
         text = (resp.text or "").strip()
         if not text:
             raise LLMError("Gemini returned an empty response.")
@@ -87,6 +110,7 @@ class GeminiClient:
         except Exception as exc:
             raise LLMError(f"Gemini structured call failed: {exc}") from exc
 
+        _record_gemini_usage(self._model, resp, prompt, system)
         # `.parsed` is populated when the SDK could validate the response itself;
         # fall back to parsing `.text` so a schema mismatch surfaces as LLMError.
         parsed = getattr(resp, "parsed", None)
@@ -98,6 +122,14 @@ class GeminiClient:
             raise LLMError(
                 f"Gemini returned output that does not match {schema.__name__}: {exc}"
             ) from exc
+
+
+def _customer_message(prompt: str) -> str:
+    """Pull the customer's message back out of a composed prompt."""
+    for line in prompt.splitlines():
+        if line.startswith("Customer message:"):
+            return line.split(":", 1)[1].strip()
+    return prompt.strip()
 
 
 class FakeLLMClient:
@@ -115,12 +147,29 @@ class FakeLLMClient:
     )
 
     async def generate(self, prompt: str, *, system: str = "", temperature: float = 0.3) -> str:
-        return f"[fake-llm] no model configured; echoing prompt tail: {prompt.strip()[-180:]}"
+        reply = f"[fake-llm] no model configured; echoing prompt tail: {prompt.strip()[-180:]}"
+        # Priced at zero, but still counted: the budget and the loop limits have to
+        # behave the same offline as they do against a real provider.
+        record_usage("fake", estimate_tokens(system + prompt), estimate_tokens(reply),
+                     estimated=True)
+        return reply
 
     async def generate_structured(
         self, prompt: str, *, schema: type[T], system: str = "", temperature: float = 0.0
     ) -> T:
+        record_usage("fake", estimate_tokens(system + prompt), 16, estimated=True)
         fields = set(schema.model_fields)
+        if {"action", "product_id"} <= fields:
+            # Execution loop: one search, then answer. Deterministic, and it exercises
+            # both halves of the loop (act, then revise into a stop) without a model.
+            first_step = "Observations so far: none" in prompt
+            return schema.model_validate(
+                {
+                    "action": "search_products" if first_step else "answer",
+                    "thought": "fake client: search once, then answer",
+                    "query": _customer_message(prompt),
+                }
+            )
         if {"query", "product_type"} <= fields:
             # Catalog planning: search on the raw message, invent no filters.
             return schema.model_validate(
@@ -130,6 +179,10 @@ class FakeLLMClient:
                     "max_monthly_premium": None,
                 }
             )
+        if {"query"} == fields:
+            # Query reformulation: the offline client has no vocabulary to map, so it
+            # returns the question unchanged and the retry is a measured no-op.
+            return schema.model_validate({"query": prompt.split(":", 1)[-1].strip()})
         if {"is_injection"} <= fields:
             # The fake client cannot judge intent; leave the decision to the patterns.
             return schema.model_validate({"is_injection": False, "reason": "fake client"})

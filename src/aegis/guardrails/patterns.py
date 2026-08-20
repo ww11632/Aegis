@@ -1,8 +1,9 @@
 """Detection patterns shared by the input and output guardrails.
 
 Deliberately deterministic: regex detection is cheap, auditable, and reproducible in
-evaluation. An LLM classifier is the natural second stage for paraphrased injections
-(see the roadmap), but it should not replace this layer.
+evaluation. The LLM classifier in `input_guard` is the second stage for paraphrased
+injections, but it does not replace this layer — these patterns also run over retrieved
+documents and tool output, where a model call per source would be too expensive.
 """
 
 import re
@@ -129,10 +130,32 @@ INJECTION_PATTERNS: list[tuple[str, re.Pattern]] = [
 
 
 def find_injections(text: str) -> list[Detection]:
-    """Find prompt-injection attempts."""
+    """Find prompt-injection attempts — first hit per pattern, enough to block on."""
     return [
         Detection(name, m.group(), m.start(), m.end())
         for name, pattern in INJECTION_PATTERNS
         for m in [pattern.search(text)]
         if m
     ]
+
+
+def find_all_injections(text: str) -> list[Detection]:
+    """Every injection span, ordered by position.
+
+    `find_injections` stops at the first hit per pattern because a single hit is enough
+    to reject a user message. Neutralising injected instructions inside a document needs
+    all of them, so this variant scans exhaustively.
+    """
+    found = [
+        Detection(name, m.group(), m.start(), m.end())
+        for name, pattern in INJECTION_PATTERNS
+        for m in pattern.finditer(text)
+    ]
+    # Overlapping patterns can match the same sentence; keep the earliest, longest span.
+    found.sort(key=lambda d: (d.start, -(d.end - d.start)))
+    kept: list[Detection] = []
+    for d in found:
+        if any(d.start < k.end and k.start < d.end for k in kept):
+            continue
+        kept.append(d)
+    return kept

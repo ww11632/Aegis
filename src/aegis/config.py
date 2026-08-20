@@ -26,6 +26,23 @@ class Settings(BaseSettings):
     # per clean request; patterns alone still run when this is off.
     guardrail_llm_classifier: bool = True
 
+    # --- Harness: execution loop & budget ---
+    # Ceilings for one request. The loop stops at max_agent_steps; the budget stops the
+    # request when calls, tokens, or cost run out — whichever binds first.
+    max_agent_steps: int = 4
+    max_llm_calls: int = 8
+    max_total_tokens: int = 40_000
+    max_cost_usd: float = 0.05
+
+    # --- Harness: permissions ---
+    # External side effects (anything leaving the system) need explicit approval.
+    require_approval_for_external: bool = True
+    approval_ttl_seconds: int = 600
+
+    # --- Memory ---
+    # Turns of conversation history replayed into routing and agent prompts.
+    session_memory_turns: int = 6
+
     # --- RAG ---
     rag_top_k: int = 3
     rag_min_score: float = 0.0  # cosine similarity floor; chunks below this are dropped

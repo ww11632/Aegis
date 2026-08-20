@@ -4,7 +4,9 @@ import pytest
 
 from aegis.agents.base import AgentResult, TraceStep
 from aegis.agents.supervisor import Supervisor
+from aegis.harness.context import AgentContext
 from aegis.llm import LLMError
+from aegis.memory.session import Turn
 
 
 class ScriptedLLM:
@@ -29,8 +31,8 @@ class StubAgent:
         self.name = name
         self.calls = []
 
-    async def run(self, message, *, session_id="default"):
-        self.calls.append((message, session_id))
+    async def run(self, message, *, ctx=None):
+        self.calls.append((message, ctx.session_id if ctx else "default"))
         return AgentResult(
             reply=f"{self.name} handled it",
             trace=[TraceStep(agent=self.name, action="llm_answer")],
@@ -46,30 +48,50 @@ def build(llm):
 async def test_routes_to_the_classified_agent(intent):
     supervisor, agents = build(ScriptedLLM(intent=intent))
 
-    reply, agent_used, trace = await supervisor.handle("some question", session_id="s1")
+    result = await supervisor.handle("some question", ctx=AgentContext(session_id="s1"))
 
-    assert agent_used == intent
-    assert reply == f"{intent} handled it"
+    assert result.agent_used == intent
+    assert result.reply == f"{intent} handled it"
     assert agents[intent].calls == [("some question", "s1")]
-    assert trace[0].action == "route"
-    assert trace[-1].agent == intent
+    assert result.trace[0].action == "route"
+    assert result.trace[-1].agent == intent
 
 
 async def test_low_confidence_is_recorded_in_the_trace():
     supervisor, _ = build(ScriptedLLM(intent="faq", confidence=0.2))
 
-    _, _, trace = await supervisor.handle("hmm")
+    result = await supervisor.handle("hmm")
 
-    assert any(step.action == "low_confidence" for step in trace)
+    assert any(step.action == "low_confidence" for step in result.trace)
 
 
 async def test_classifier_failure_degrades_to_faq_instead_of_erroring():
     supervisor, _ = build(ScriptedLLM(fail=True))
 
-    _, agent_used, trace = await supervisor.handle("what does travel insurance cover?")
+    result = await supervisor.handle("what does travel insurance cover?")
 
-    assert agent_used == "faq"
-    assert "routing failed" in trace[0].detail
+    assert result.agent_used == "faq"
+    assert "routing failed" in result.trace[0].detail
+
+
+async def test_history_is_supplied_to_the_router():
+    """A follow-up has to be routed in the light of the turn before it."""
+    seen = []
+
+    class PromptCapturingLLM(ScriptedLLM):
+        async def generate_structured(self, prompt, *, schema, system="", temperature=0.0):
+            seen.append(prompt)
+            return await super().generate_structured(
+                prompt, schema=schema, system=system, temperature=temperature
+            )
+
+    supervisor, _ = build(PromptCapturingLLM())
+    ctx = AgentContext(history=[Turn(role="user", content="which travel plan should I get?")])
+
+    await supervisor.handle("what about for a family?", ctx=ctx)
+
+    assert "Earlier turns:" in seen[0]
+    assert "which travel plan should I get?" in seen[0]
 
 
 def test_supervisor_requires_both_agents():

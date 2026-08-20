@@ -10,6 +10,8 @@ the agent only knows tool names, schemas, and JSON results.
 
 import json
 import logging
+import uuid
+from datetime import datetime, timezone
 from functools import lru_cache
 
 from mcp.server.mcpserver import MCPServer
@@ -23,6 +25,10 @@ server = MCPServer(
     version="0.1.0",
     instructions="Look up Aegis insurance products by need, type, and budget.",
 )
+
+
+# Callback requests raised in this process. Production would write to the CRM instead.
+_CALLBACK_QUEUE: list[dict] = []
 
 
 @lru_cache(maxsize=1)
@@ -93,6 +99,40 @@ def get_product_details(product_id: str) -> dict:
         if product.get("id") == product_id:
             return product
     return {"error": f"No product with id {product_id!r}"}
+
+
+@server.tool(
+    description=(
+        "Request a callback from a human advisor about a product. This creates a real "
+        "record in the advisor queue and is an external side effect: the caller must "
+        "obtain approval before invoking it."
+    )
+)
+def request_advisor_callback(
+    product_id: str = "", reason: str = "", contact_hint: str = ""
+) -> dict:
+    """Queue a callback request for a human advisor.
+
+    Args:
+        product_id: Catalog id the customer is asking about, e.g. "prod-001".
+        reason: One sentence on what the customer wants to discuss.
+        contact_hint: How the customer prefers to be reached, e.g. "weekday mornings".
+            Never a phone number or an email address — the advisor system already holds
+            the customer's contact details.
+    """
+    ticket = {
+        "ticket_id": f"cb-{uuid.uuid4().hex[:8]}",
+        "product_id": product_id,
+        "reason": reason[:280],
+        "contact_hint": contact_hint[:120],
+        "status": "queued",
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }
+    # An MVP stand-in for the CRM write this would be in production. It is kept as a real
+    # side effect — the queue changes — so the approval path has something to gate.
+    _CALLBACK_QUEUE.append(ticket)
+    logger.info("request_advisor_callback queued %s", ticket["ticket_id"])
+    return ticket
 
 
 def main() -> None:

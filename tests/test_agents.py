@@ -61,8 +61,9 @@ async def test_faq_agent_abstains_when_nothing_is_retrieved():
     result = await agent.run("what is the capital of France?")
 
     assert result.reply == NO_CONTEXT_REPLY
-    assert [s.action for s in result.trace] == ["retrieve", "abstain"]
-    assert llm.prompts == []  # no LLM call without grounding
+    # retrieve -> observe nothing -> reformulate -> still nothing -> abstain
+    assert [s.action for s in result.trace] == ["retrieve", "rephrase", "abstain"]
+    assert llm.prompts == []  # no answer is written without grounding
 
 
 async def test_faq_agent_degrades_when_the_retriever_is_missing():
@@ -77,9 +78,10 @@ async def test_faq_agent_degrades_when_the_retriever_is_missing():
 # --- Recommendation agent ----------------------------------------------------------
 
 class StubCatalog:
-    def __init__(self, products=None, error: str = ""):
+    def __init__(self, products=None, error: str = "", details=None):
         self.products = products if products is not None else []
         self.error = error
+        self.details = details or {}
         self.calls: list[dict] = []
 
     async def search_products(self, **kwargs):
@@ -88,6 +90,12 @@ class StubCatalog:
             raise MCPToolError(self.error)
         return self.products
 
+    async def get_product_details(self, product_id):
+        self.calls.append({"product_id": product_id})
+        if self.error:
+            raise MCPToolError(self.error)
+        return self.details.get(product_id, {})
+
 
 async def test_recommendation_agent_grounds_the_answer_in_catalog_products():
     llm = RecordingLLM()
@@ -95,17 +103,23 @@ async def test_recommendation_agent_grounds_the_answer_in_catalog_products():
 
     result = await RecommendationAgent(llm, catalog=catalog).run("recommend travel cover")
 
-    assert [s.action for s in result.trace] == ["plan_tool_call", "mcp_tool_result", "llm_answer"]
+    # plan -> act -> observe -> plan again -> answer
+    assert [s.action for s in result.trace] == [
+        "plan_step", "mcp_tool_result", "plan_step", "llm_answer",
+    ]
     assert "prod-001" in result.trace[1].detail
     assert "SafeTravel Plus" in llm.prompts[0]
     assert catalog.calls[0]["query"]
+    assert result.stop_reason == "answered"
 
 
 async def test_recommendation_agent_reports_no_match_when_the_catalog_is_empty():
     result = await RecommendationAgent(RecordingLLM(), catalog=StubCatalog([])).run("recommend x")
 
     assert result.reply == NO_PRODUCTS_REPLY
-    assert [s.action for s in result.trace] == ["plan_tool_call", "mcp_tool_result"]
+    assert [s.action for s in result.trace] == [
+        "plan_step", "mcp_tool_result", "plan_step", "abstain",
+    ]
 
 
 async def test_recommendation_agent_survives_a_tool_failure():
@@ -114,10 +128,13 @@ async def test_recommendation_agent_survives_a_tool_failure():
     result = await RecommendationAgent(RecordingLLM(), catalog=catalog).run("recommend x")
 
     assert result.reply == NO_PRODUCTS_REPLY
-    assert result.trace[-1].action == "tool_error"
+    # The failure is observed and fed back to the planner, not raised to the caller.
+    assert "tool_error" in [step.action for step in result.trace]
+    errors = [step.detail for step in result.trace if step.action == "tool_error"]
+    assert "server crashed" in errors[0]
 
 
-async def test_recommendation_agent_falls_back_when_planning_fails():
+async def test_recommendation_agent_stops_when_planning_fails():
     class PlannerFailsLLM(RecordingLLM):
         async def generate_structured(self, prompt, *, schema, system="", temperature=0.0):
             raise LLMError("planner unavailable")
@@ -126,8 +143,9 @@ async def test_recommendation_agent_falls_back_when_planning_fails():
 
     result = await RecommendationAgent(PlannerFailsLLM(), catalog=catalog).run("recommend travel")
 
-    assert catalog.calls[0]["query"] == "recommend travel"
-    assert result.trace[-1].action == "llm_answer"
+    assert catalog.calls == []  # a planner that cannot plan does not get to call tools
+    assert result.stop_reason == "planning_failed"
+    assert result.reply == NO_PRODUCTS_REPLY
 
 
 async def test_recommendation_agent_against_the_real_mcp_server():

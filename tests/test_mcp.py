@@ -20,7 +20,11 @@ async def test_handshake_reports_the_server(catalog):
 
 
 async def test_tools_are_advertised_over_the_protocol(catalog):
-    assert sorted(await catalog.list_tool_names()) == ["get_product_details", "search_products"]
+    assert sorted(await catalog.list_tool_names()) == [
+        "get_product_details",
+        "request_advisor_callback",
+        "search_products",
+    ]
 
 
 async def test_search_returns_catalog_products(catalog):

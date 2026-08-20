@@ -10,6 +10,9 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from aegis.agents.base import Agent, AgentResult, TraceStep
+from aegis.harness.context import AgentContext
+from aegis.harness.cost import measure, use_meter
+from aegis.harness.permissions import PendingApproval
 from aegis.llm import LLMClient, LLMError
 
 logger = logging.getLogger(__name__)
@@ -44,7 +47,22 @@ message: "Recommend a plan for a 2-week trip to Japan under $60/month." -> recom
 message: "I just bought a house, what do I need?" -> recommendation (0.8)
 
 If the message asks for information *and* a suggestion, prefer "recommendation".
-Return your confidence honestly: use a value below 0.5 when the message is too vague."""
+Return your confidence honestly: use a value below 0.5 when the message is too vague.
+
+When earlier turns are supplied, route the latest message in their light: a short
+follow-up usually continues the subject of the turn before it."""
+
+
+class SupervisorResult(BaseModel):
+    """What one full route-then-answer pass produced."""
+
+    model_config = {"arbitrary_types_allowed": True}
+
+    reply: str
+    agent_used: str
+    trace: list[TraceStep] = Field(default_factory=list)
+    pending_approval: PendingApproval | None = None
+    stop_reason: str = "answered"
 
 
 class Supervisor:
@@ -59,11 +77,14 @@ class Supervisor:
         self._llm = llm
         self._agents = agents
 
-    async def route(self, message: str) -> RoutingDecision:
+    async def route(self, message: str, ctx: AgentContext | None = None) -> RoutingDecision:
         """Classify a message into a routing decision, degrading to the default intent."""
+        prompt = f"message: {message}"
+        if ctx is not None and ctx.history:
+            prompt = f"Earlier turns:\n{ctx.history_prompt()}\n\n{prompt}"
         try:
             decision = await self._llm.generate_structured(
-                f"message: {message}",
+                prompt,
                 schema=RoutingDecision,
                 system=ROUTER_SYSTEM_PROMPT,
             )
@@ -81,10 +102,18 @@ class Supervisor:
         return decision
 
     async def handle(
-        self, message: str, *, session_id: str = "default"
-    ) -> tuple[str, str, list[TraceStep]]:
-        """Run the full route-then-answer flow. Returns (reply, agent_used, trace)."""
-        decision = await self.route(message)
+        self, message: str, *, ctx: AgentContext | None = None
+    ) -> SupervisorResult:
+        """Run the full route-then-answer flow."""
+        ctx = ctx or AgentContext()
+        # Bind the request's meter for everything downstream, so what the agents check
+        # their budget against is the same object the LLM clients record into.
+        with use_meter(ctx.meter):
+            return await self._handle(message, ctx)
+
+    async def _handle(self, message: str, ctx: AgentContext) -> SupervisorResult:
+        with measure() as m:
+            decision = await self.route(message, ctx)
         trace = [
             TraceStep(
                 agent=self.name,
@@ -93,6 +122,7 @@ class Supervisor:
                     f"intent={decision.intent} "
                     f"confidence={decision.confidence:.2f} — {decision.reasoning}"
                 ),
+                **m.trace_fields(),
             )
         ]
         if decision.confidence < LOW_CONFIDENCE:
@@ -105,6 +135,12 @@ class Supervisor:
             )
 
         agent = self._agents[decision.intent]
-        result: AgentResult = await agent.run(message, session_id=session_id)
+        result: AgentResult = await agent.run(message, ctx=ctx)
         trace.extend(result.trace)
-        return result.reply, agent.name, trace
+        return SupervisorResult(
+            reply=result.reply,
+            agent_used=agent.name,
+            trace=trace,
+            pending_approval=result.pending_approval,
+            stop_reason=result.stop_reason,
+        )
